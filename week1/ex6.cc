@@ -21,7 +21,11 @@ int main()
 	/*By first shifting the bits to the right and then to the left, the last bit will be changed to a zero.
 	If we then compare this new value to the input we can determine whether the input is odd or even.*/
 
-	cout << ((value | 1) - value ? "even" : "odd") << '\n';
+	cout << ((value | 1) == value ? "odd" : "even") << '\n';
+	/*By using the Bitwise inclusive OR with value and 1 will return value if value is odd. However when 
+	value is even its first zero will be changed to a 1 resulting in a hight number.*/
 
-	cout << (value ? "odd" : "even") << '\n';
+	cout << (~(value ^ 1) == -value ? "odd" : "even") << '\n';
+	/*By using the bitwise compliment and the bitwise XOR, we create a bitwise XNOR. This results in even 
+	numbers becoming their negative minus two while odd numbers will just become negative.*/
 }
