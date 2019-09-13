@@ -3,5 +3,5 @@ using namespace std;
 
 int main() 
 {
-    cout << "Hello World\n";					//insert Hello World into the output stream
+    cout << "Hello World\n";		//outputs the required "Hello World"
 }
