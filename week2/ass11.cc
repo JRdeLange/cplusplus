@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
 			useCorrect = true;
 	}
 
-	int numOfLines = 0;						//We use numOfLines to keep track of the number of lines that we have read from the file.
+	size_t numOfLines = 0;						//We use numOfLines to keep track of the number of lines that we have read from the file.
 	string line;							//We need line so that we can use getline() to read the input line for line.
 
 	if (useCorrect)
