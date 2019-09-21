@@ -3,15 +3,27 @@
 #include <stdexcept>
 #include <string>
 
-
-
 using namespace std;
 
 int main(int argc, char *argv[]) {
   if(structCall(argc, argv))
-    boundCall(argc, argv)
+    boundCall(argc, argv);
 
   return 0;
+}
+
+ReturnValues combine(size_t requested, int argCount, char **argVector) {
+  ReturnValues ret;
+  ret.nr = requested;
+  ret.ok = (requested <= (size_t)argCount);
+  if(!ret.ok) {
+    // Error, no requested element
+    ret.value = "";
+    return ret;
+  }
+
+  ret.value = argVector[requested];
+  return ret;
 }
 
 bool structCall(int argCount, char **argVector) {
@@ -21,24 +33,17 @@ bool structCall(int argCount, char **argVector) {
     return false;
   }
 
-  string arg = argv[1];
-  try {
-    size_t pos;
-    int x = stoi(arg, &pos);
-    if (pos < arg.size()) {
-      cerr << "Trailing characters after number: " << arg << '\n';
-    }
-  } catch (invalid_argument const &ex) {
-    cerr << "Invalid number: " << arg << '\n';
-  } catch (out_of_range const &ex) {
-    cerr << "Number out of range: " << arg << '\n';
-  }
+  string arg = argVector[1];
+  size_t pos;
+  int x = stoi(arg, &pos);
+  if (pos < arg.size())
+    cerr << "Trailing characters after number: " << arg << '\n';
 
   size_t nr = x;
 
-  ReturnValues ret = combine(nr, argVector);
+  ReturnValues ret = combine(nr, argCount, argVector);
   if (ret.ok) {
-    cout << ret.nr << " " << ret.value
+    cout << ret.nr << " " << ret.value;
   } else {
     printUsage();
     return false;
@@ -47,6 +52,11 @@ bool structCall(int argCount, char **argVector) {
   return true;
 }
 
+void boundCall(int argCount, char **argVector) {
+  // TODO
+  structCall(argCount, argVector);
+}
+
 void printUsage() {
-  cout << ""
+  cout << "Usage: African or European swallow?\n";
 }
