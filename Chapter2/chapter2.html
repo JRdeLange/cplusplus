@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title> C/C++ Exercises </title>
+<style type="text/css">
+    figure {text-align: center;}
+    img {vertical-align: center;}
+    .XXfc {margin-left:auto;margin-right:auto;}
+    .XXtc {text-align: center;}
+    .XXtl {text-align: left;}
+    .XXtr {text-align: right;}
+    .XXvt {vertical-align: top;}
+    .XXvb {vertical-align: bottom;}
+</style>
+</head>
+<body cz-shortcut-listen="true">
+<hr>
+<ul>
+    <li> <a href="https://www.icce.rug.nl/edu/1/opgaven.html">Table of Contents</a>
+    </li><li> <a href="https://www.icce.rug.nl/edu/1/opgaven01.html">Previous Chapter</a>
+    </li><li> <a href="https://www.icce.rug.nl/edu/1/opgaven03.html">Next Chapter</a>
+</li></ul>
+<hr>
+<a name="l2"></a>
+<h1>Chapter 2: Set two: Flow Control. Deadline: September 26</h1>
+            <br><br>
+<p>
+General Advice: Various <em>standard C/C++</em>  functions exist that may be used
+when solving exercises.
+</p><p>
+For such (standard) functions, the following simple rules apply:
+    </p><ul>
+    <li> If an exercise explicitly tells you to use a particular function,
+        that function must (of course) be used to complete the exercise.
+<p>
+</p></li><li> For several tasks standard functions are available. Starting next
+        week we'll be able to define our own functions. When standard
+        functions exist you should <em>not</em> develop comparable functions
+        yourself. Don't reinvent the wheel. Visit our <a href="https://www.icce.rug.nl/edu/1/manpages">manpages</a> overview
+        for an overview and description of functions that are useful for this
+        course (now or at some future moment in time).
+    </li></ul>
+<p>
+Some suggestions:
+    </p><ul>
+    <li> String-operations should be performed using <code>std::string</code>
+objects; 
+<p>
+</p></li><li> Functions whose names start with <em>is...()</em>, should be used to find
+the category a certain character value belongs to. E.g., letters, digits,
+punctuation marks, white space (example: <code>is_space</code>);
+<p>
+</p></li><li> For <em>input and output</em> <code>iostream</code> objects must be used. For
+now, use <code>cin</code> for input, and <code>cout</code> for output. Do <em>not</em> use the
+<strong>C</strong>-functions <code>printf, scanf</code> or their relatives.
+    </li></ul>
+<p>
+To find out which (standard) functions exist, consult books, or use
+on-line manuals. On <em>Unix</em> systems you can use the man-pages or the
+info-reader. Other systems offer comparable documentation sources. Many
+man-pages are available at the course's restricted section: <a href="https://www.icce.rug.nl/edu/1/manpages">manpages</a>. If
+a function is not mentioned there, it's unlikely that you need it for this
+course.
+</p><p>
+Experience shows that all reference information is already available on
+your computer; buying reference books therefore is something of the past.
+Very good references can also be found on-line (e.g.,
+<a href="http://en.cppreference.com/w/">cppreference</a>). Sooner or later you 
+develop a mental picture of available functions, and you only occasionally
+have to refer to their man-pages.
+</p><p>
+Be careful not to develop a brain-dead searching habit. Don't
+go to these references before you've studied the subject matter. <em>First</em>
+study the Annotations, <em>then</em> resort to references, if necessary.
+</p><p>
+The more up-to-date your mental picture is, the better and faster you can
+develop programs, as you will be able to use existing software, developed and
+debugged by others (be)for(e) you.  This philosophy is present in <strong>C++</strong> even
+stronger than in <strong>C</strong>, so get used to it quickly.
+</p><p>
+</p><ul>
+    <li> In programs developed during this part of the course, erroneous
+<em>input</em> need not be considered, unless the exercise explicitly asks you to
+do so. So, if a program expects a number, your code does not have to check
+for numeric input.
+<p>
+We know the position we take here is dangerous, as <em>many</em> sources of
+errors in programs result from unchecked input and arguments. Although
+programs <em>should</em> rigorously check their input, doing so in the
+realm of our exercises often hides the actual purpose of the exercises.  Hence
+we ordinarily do without, knowing that error handling is covered later
+in this course.
+</p><p>
+</p></li><li> Programs that solve the exercises are usually fairly small. If
+you think a lot of code is required to solve a particular exercise, <em>think
+again</em>: you're probably doing something wrong.
+<p>
+</p></li><li> When writing programs reading text files you may assume that the last
+line is properly terminated by a newline character, unless explicitly
+indicated otherwise.
+<p>
+</p></li><li> Often we use objects from the so-called standard namespace (e.g.,
+<code>std::cout</code>, <code>std::string</code>). If your source files contain a line
+        <pre>
+    using namespace std;
+        
+</pre>
+
+    just before the actual source code starts, then the <code>std::</code> prefixes may
+be <em>omitted</em> when referring to entities from that namespace. 
+    </li></ul>
+<p>
+</p><hr>
+        <strong>Exercise 9.</strong>
+        <br>
+        Basic exercise
+        <br>
+        Purpose of this exercise: create a program producing a multiplication table
+<p>
+Remember primary school? You had to learn by heart the multiplication
+tables. In this little program we're going to do that again, but differently.
+</p><p>
+Design a program that is called from the command-line with one argument: a
+numeric positive integral value for which the program should display the
+multiplication table. 
+</p><p>
+You may assume that the argument that's passed to the program is indeed a
+positive integral value.
+</p><p>
+For example, starting the program as <code>a.out 7</code> must produce:
+    </p><pre>
+    1 * 7 = 7
+    2 * 7 = 14
+    3 * 7 = 21
+    4 * 7 = 28
+    5 * 7 = 35
+    6 * 7 = 42
+    7 * 7 = 49
+    8 * 7 = 56
+    9 * 7 = 63
+    10 * 7 = 70
+    
+</pre>
+
+<p>
+Hints: make sure you localize. Also, avoid IRE.
+</p><p>
+<br><br>
+    
+</p><hr>
+        <strong>Exercise 10.</strong>
+        <br>
+        Basic exercise
+        <br>
+        Purpose of this exercise (letters): learn to determine sets of characters
+<p>
+(Extended) ascii characters fit in bytes (having 8 bits). In the header file
+<code>ctype.h</code> characters can be inspected for all kinds of characteristics
+(e.g., using functions like <code>isspace</code> to test whether a character is a space
+character) (cf. <strong>isspace</strong>(3)). 
+</p><p>
+Not assuming anything about the ordering or position of letters in the ascii
+character set, fill a <code>std::string</code> with all letters found in the ascii
+character set.
+</p><p>
+Submit your program and the the program's output, showing the constructed
+string containing all letters.
+</p><p>
+Hint: letters consist of lowercase and uppercase characters, but a dedicated
+function is available testing whether a character is either a lowercase or an 
+uppercase character.
+</p><p>
+<br><br>
+    
+</p><hr>
+        <strong>Exercise 11.</strong>
+        <br>
+        Basic exercise
+        <br>
+            Purpose of this exercise: contrast a correct way to read a file with an
+incorrect way.
+<p>
+Create a simple program displaying the number of lines it reads from its
+standard input. If the command-line argument <code>ok</code> is provided it should use
+the correct (standard) form for reading files. 
+</p><p>
+If the command line argument <code>ok</code> is not provided, it should prematurely
+test whether lines were successfully read (consequently, it will print a
+value which is one too large). 
+</p><p>
+The program can easily be tested by entering a couple of lines using your
+keyboard, terminating the input using ctrl-D.
+</p><p>
+Note: the correct form <em>must</em> use an eternal loop, the incorrect form
+<em>must</em> use a form in which <code>EOF</code> is tested before (instead of after)
+reading the file.
+</p><p>
+<br><br>
+    
+</p><hr>
+        <strong>Exercise 12.</strong>
+        <br>
+        Basic exercise
+        <br>
+        Purpose of this exercise: learn to perform some string-manipulations
+<p>
+Define a word as series of non-blank characters. Write a program that reads
+lines of text from <code>cin</code> and for each line in turn it replaces the line's
+first word by the line's last word, and then writes the line to
+<code>cout</code>. 
+</p><p>
+Note that lines may contain no, one, two or more words.
+</p><p>
+<br><br>
+    
+</p><hr>
+        <strong>Exercise 13.</strong>
+        <br>
+        Basic exercise
+        <br>
+        Purpose of this exercise: introduce and learn to write a simple filter.
+<p>
+A <em>filter</em> is a program reading its information from the standard input,
+writing its output to the standard output. Many filters exist, e.g.,
+<strong>sed</strong>(1), <strong>cat</strong>(1), <strong>(g)awk</strong>(1), <strong>gpg</strong>(1), to name a few.
+</p><p>
+In this exercise develop a filter that removes empty lines existing at the
+beginning of <code>cin</code> and at the end of <code>cin</code>. A line is not empty if it
+contains at least one non-blank character.  If an empty line contains blank
+characters then those characters can be ignored when writing that empty line
+to the standard output stream.
+</p><p>
+The venom of this exercise is (literally) in its tail: how do you know whether
+a bunch of empty lines are indeed at the end? 
+</p><p>
+Caveats: we <em>haven't</em> covered arrays of undetermined sizes yet, so you can't
+store lines in an array, and you're <em>not</em> supposed to adopt the
+Perl approach, where you first read in the full file, and then process
+what you've got. Using a <code>std::string</code> variable is OK, but that variable may
+never contain more than one line read from the standard input.
+</p><p>
+<br><br>
+    
+</p><p>
+</p><hr>
+        <strong>Exercise 14.</strong>
+        <br>
+        Advanced exercise
+        <br>
+        Purpose of this exercise: learn to apply a standard type in a non-standard
+way.
+<p>
+Design a program showing all combinations of all the program's command
+line arguments (not using the program name itself). Each combination should be
+displayed on a numbered line. The first line should be empty (none of the
+arguments are shown), the last one should show all the program's arguments.
+</p><p>
+Hints: 
+    </p><ul>
+    <li> this exercise is extremely simple: think about how values are stored
+        in the bits of an integral-typed variable like an <code>int</code>.
+    </li><li> Localize as much as possible.
+    </li><li> Be aware of IRE!
+    </li><li> In case you're tempted: floating point values are nowhere necessary.
+    </li><li> A bit premature: to skip the program name do <code>++argv</code>
+            as 1st statement in <code>main</code>.
+    </li></ul>
+<p>
+Example:
+        </p><pre>
+    a.out if then else
+    1: 
+    2: if 
+    3: then 
+    4: if then 
+    5: else 
+    6: if else 
+    7: then else 
+    8: if then else 
+        
+</pre>
+
+<p>
+<br><br>
+    
+</p><hr>
+        <strong>Exercise 15.</strong>
+        <br>
+        Advanced exercise
+        <br>
+            Purpose of this exercise: learn how to use bit-manipulations.
+<p>
+<strong>C++</strong> has a shift-left (<code>&lt;&lt;</code>) and a shift-right (<code>&gt;&gt;</code>)
+operator. Many processor instruction sets (and some computer languages) also
+support <em>rotate</em> instructions: <code>ror</code>, rotate right, makes sure that the
+least significant bit `dropping off' to the right will be re-inserted to the
+left, <code>rol</code>, rotate left, makes sure that the most significant bit dropping
+off to the left will be re-inserted to the right. So, with a 4-bit binary
+value 0101 a <code>ror</code> results in the value 1010. Construct a program <code>rotate</code>
+expecting the following arguments:
+        </p><ul>
+        <li> An integral value, represented as a binary value, using only 0
+and 1 characters, e.g., 011010. 
+        </li><li> the word <code>rol</code> (rotate left) or <code>ror</code> (rotate right). 
+        </li></ul>
+    Use the number of characters of the provided value and apply the required
+rotation (so, 00111 is a 5-bit value). Show the new value in binary, decimal
+and hexadecimal form. For example <code>rotate 00111 ror</code> should results in:
+    <div style="text-align: center"><code>10011 19 13</code></div>
+        Additional requirements/hints:
+        <ul>
+        <li> Use a <code>size_t value</code> to store the binary value in.
+        </li><li> Use a <code>size_t newValue</code> to store the rotated value in.
+        </li><li> <code>newValue</code> must be given its proper (rotated) value when it's
+defined. So <em>no</em> further assignments to <code>newValue</code> are allowed (Hint: use
+a conditional assignment and bit-wise operators).
+        </li><li> Parentheses may only be used when absolutely necessary.
+        </li></ul>
+    Submit the program <code>rotate.cc</code> as well as the results of:
+        <pre>
+    rotate 1011110101011011 ror
+    rotate 1101111101110111 rol
+        
+</pre>
+
+    
+<p>
+<br><br>
+    
+</p><hr>
+        <strong>Exercise 16.</strong>
+        <br>
+        Advanced exercise
+        <br>
+        Purpose of this exercise: learn to think about inserting values
+<p>
+It looks so easy: inserting a value into <code>cout</code> using the octal, decimal or
+hexadecimal number system. But can you do it yourself?
+</p><p>
+This exercise focueses on inserting numbers in a certain number system.
+</p><p>
+Number systems beyond 9 use letters for representing values. Let's allow all
+number systems from binary to a number system using base (radix) 36: 10 digits
+plus 26 (lower case) letters.
+</p><p>
+Write a program that expects two (decimal) non-negative integral numbers on
+the command line. The first one is the radix to use when displaying the second
+number.
+</p><p>
+Examples:
+        </p><pre>
+    $ number 5 34
+    34, displayed using radix 5 is: 114
+    $ number 21 34
+    34, displayed using radix 21 is: 1d
+    $ number 16 57005
+    57005, displayed using radix 16 is: dead
+    $ number 30 0
+    0, displayed using radix 30 is: 0
+        
+</pre>
+
+<p>
+Hints and caveats:
+    </p><ul>
+    <li> For those who have previous programming experience: no functions!
+    </li><li> To determine the <em>last</em> digit of a <code>value</code> in a number system
+        using <code>radix</code> compute <code>value % radix</code>. The last but one digit uses
+        the same computation, but then on the value <code>value / radix</code>.
+    </li><li> Make sure your program also works when converting the value 0. Other
+        than that, leading zeros should be ignored.
+    </li></ul>
+<p>
+<br><br>
+    
+</p><p>
+            
+    </p><p></p><hr><p>
+    
+    
+        
+            </p><hr>
+            <hr>
+<ul>
+    <li> <a href="https://www.icce.rug.nl/edu/1/opgaven.html">Table of Contents</a>
+    </li><li> <a href="https://www.icce.rug.nl/edu/1/opgaven01.html">Previous Chapter</a>
+    </li><li> <a href="https://www.icce.rug.nl/edu/1/opgaven03.html">Next Chapter</a>
+</li></ul>
+<hr>
+
+
+</body></html>

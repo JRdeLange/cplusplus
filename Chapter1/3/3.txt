@@ -1,0 +1,43 @@
+## Exercise 3
+
+1)
+This is not good C++ practice.
+This main function expects a return value, like 0.  This can be fixed by adding
+the ’return 0’ or changing the function return type to void.
+
+2)
+This is not good C++ practice.
+There is a different, more common way to get environment variables with the
+’getEnv()’ function.  This method also does not work on all modern UNIX sys-
+tems.  Since it can be avoided, it should be avoided.
+
+3)
+This is not good C++ practice.
+It  uses  a  return  statement  as  if  it  is  a  void  function,  which  it  is  not.   Either
+return 0 or change the function to void
+
+4)
+This is not good C++ practice.
+This statement will always return true.  Therefore, it will most likely be removed
+by the pre-optimizer in the compilation process.
+
+5)
+This is true.
+Argc shows the number of arguments that have been given to the program.  This
+means that argv[argc] is out of bounds, since the number of arguments starts
+counting from 1, instead of 0.
+
+6)
+This is not good practice.
+Rather use if statements, breaks, continues and other flow control mechanisms
+to finish functions and get to the end of the main function
+
+7)
+This is good practice.
+While typedef Enum is not necessarily wrong, it is not necessary anymore.  In
+C, you used to have to add ’typedef’ in order to not re-declare the enum struct
+at every ocassion.  This is not needed in C++.  It can be avoided and therefore
+should be avoided.
+
+8)
+This is true
