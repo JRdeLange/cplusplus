@@ -4,8 +4,8 @@
 
 size_t determineLineCount() {
   std::string line;
-  size_t count;
+  size_t count = 0;
   while( getline(std::cin, line) )
-    count++;
+    ++count;
   return count;
 }
