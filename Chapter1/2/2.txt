@@ -1,0 +1,35 @@
+## Exercise 2
+
+# In C++, what’s the difference between a declaration and a definition?
+Declarations introduce names of variables, functions, etc.  to the program.
+They  also  specify  type  data,  like  integer  or  float.   A  name  must  be  declared
+before it can be used.  After that it can be declared multiple times.
+A definition defines the data or the code that is ascribed to a certain name.
+A definition is needed to get storage space for the declaration.
+
+# What are header files used for?
+Header files are used to declare names beforehand.  It is used to minimize
+errors both generally with regard to forward declaration and, more importantly,
+with regard to multiple files needing the same exact declaration.
+
+# When a compiler creates a program, in what part of the construction
+process does it use header files and in what part libraries?  (Try to
+answer the question why the compiler uses header files and libraries.)
+Header and (part of the) library files are inserted at the start of the construc-
+tion process.  During the pre-processing,  the code of those files is placed into
+the ’.cpp’ file.  This is useful to have at start because it contains declarations
+the program will use further down the line.
+
+# Is a library an object module?  Provide an explanation, not just yes
+or no.
+A library is an object module,  or rather several object modules.  To keep
+executables relatively small, we only need parts of the library.  During the con-
+struction process, the compiler only takes a small part of that library (i.e.  one
+object module) and uses it in the executable.
+Why is an object module obtained after compiling a source contain-
+ing int main() not an executable program?
+
+# Why is an object module obtained after compiling a source containing int main() not an executable program?
+
+It still requires linkage.  The linker is the last step in the compilation process. 
+It combines all object files and (static) libraries to form an executable file.

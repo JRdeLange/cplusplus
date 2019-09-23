@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title> C/C++ Exercises </title>
+<style type="text/css">
+    figure {text-align: center;}
+    img {vertical-align: center;}
+    .XXfc {margin-left:auto;margin-right:auto;}
+    .XXtc {text-align: center;}
+    .XXtl {text-align: left;}
+    .XXtr {text-align: right;}
+    .XXvt {vertical-align: top;}
+    .XXvb {vertical-align: bottom;}
+</style>
+</head>
+<body cz-shortcut-listen="true">
+<hr>
+<ul>
+    <li> <a href="https://www.icce.rug.nl/edu/1/opgaven.html">Table of Contents</a>
+    </li><li> <a href="https://www.icce.rug.nl/edu/1/opgaven02.html">Previous Chapter</a>
+</li></ul>
+<hr>
+<a name="l3"></a>
+<h1>Chapter 3: Set three: Functions. Deadline: October 3</h1>
+            <br><br>
+<p>
+For those who are or are not yet familiar with pointers: The following
+exercises don't require you to use pointers, except maybe for passing already
+constructed or available NTBSs (e.g., elements of <code>char *argv[]</code> or
+as produced by, e.g., <code>string::c_str()</code> to functions expecting NTBSs. Such
+functions define parameters like <code>char *param</code> or <code>char const *param</code>.
+</p><p>
+Notes regarding <em>all</em> future exercises:
+    </p><ul>
+    <li> Interpret the request to `define a function' as a request
+to submit the function's source text plus the sources of all its support
+functions that <em>you</em> defined. 
+<p>
+This is a recursive requirement. E.g., if those support functions in turn
+call functions you defined, the sources of those functions should also be
+submitted, unless the exercise states otherwise.
+</p><p>
+</p></li><li> Adhere to the <em>one function, one source file</em> paradigm. Use the
+names of your functions as file names. Use lower case names for the
+filenames. If you overload functions, number their source files:
+<code>function1.cc, function2.cc, ...</code>, and add a small eoln-comment to the
+header file informing the reader which function is found in which numbered
+file (in practice it's sufficient to simply add <code>// 1</code> (etc.)).
+<p>
+</p></li><li> Once a variable is defined it must be initialized. This is a well
+known `best practice', also known by the slogan <em>Resource Acquisition Is
+Initialization</em> (RAII). Explicit initialization may be omitted <em>if</em> the
+<em>next</em> statement assigns a value  to the variable, as in constructions like
+this:
+        <pre>
+    string command;
+    cin &gt;&gt; command;
+        
+</pre>
+
+<p>
+</p></li><li> Avoid defining global variables, unless specifically called for in
+the exercise. In <strong>C++</strong> programs very few global variables are used or
+required (a well known exception is <code>char **environ</code>). Start frowning when
+you encounter <strong>C++</strong> sources defining global variables.
+    </li></ul>
+<p>
+The following items are suggestions. It's appreciated if you adopt them 
+in your sources:
+    </p><ul>
+    <li> Avoid <strong>C</strong>-type comment in function bodies. This rule of thumb
+you will learn to appreciate once you need to `comment out' sections of your
+function for debugging purposes, as it prevents `nested comments' from
+occurring.
+<p>
+</p></li><li> A good <strong>strategy for implementing a program</strong> is to start with the
+<code>main</code> function. Keep this function (and other functions) small. In <code>main</code>,
+auxiliary functions are called (shortly we'll define objects of self-defined
+classes, reducing the need for auxiliary functions in <code>main</code>) to solve
+parts of the program you're designing.
+<p>
+Next, define these auxiliary functions. Initially you can leave their
+bodies empty. During this process, also start constructing your program's
+header file. Each function that's declared in the header file should be given
+a short end-of-line comment describing its purpose unless the purpose is
+intuitively clear from the function's name (that's seldom true though. A
+possible exception is the function <code>usage</code>). 
+</p><p>
+<em>Each</em> parameter that is used in a function declaration
+<em>must</em> be given a short name briefly describing its purpose (as a rule of
+thumb: define the function, then copy/paste the function head into the header
+file, and terminate the head with a semicolon).
+</p><p>
+Your program should now be compilable, linkable and executable (although
+it won't do anything useful yet).
+</p><p>
+Repeat this process for the empty functions. Start implementing the
+easiest one. Often this is the <code>usage</code> function. 
+</p><p>
+Eventually, after cycling through this process until you've implemented
+all your functions, you'll have your running program. The <strong>C</strong> book explains
+this practice in detail (e.g., section 5.3).
+    </p></li></ul>
+<p>
+Some notes about submitting exercises:
+    </p><ul>
+    <li> When submitting your answer, don't forget to briefly summarize the
+question your answer is about. There's no need to fully repeat the question.
+<p>
+</p></li><li> When submitting code, <em>first</em> submit the header file, which is
+<em>then</em> followed by the implementation of your <code>main</code> function (if
+required), which is <em>then</em> followed by the implementations of your
+functions in the order they were declared in the header file.
+<p>
+</p></li><li> If the exercise asks you to implement functions in several
+subdirectories repeat the procedure described in the previous point for each
+(alphabetically ordered) subdirectory, after having submitted the sources of
+the top-level directory.
+<p>
+</p></li><li> Provide source files of exercises at their exercises. <em>Never</em> use
+an appendix where you list all the exercises' source files.
+    </li></ul>
+<p>
+</p><hr>
+        <strong>Exercise 17.</strong>
+        <br>
+        Basic exercise
+        <br>
+        Purpose of this exercise: learn to define functions computing sums of values.
+<p>
+Define two overloaded functions <code>sum</code> returning the sum of the values of
+their arguments. One function computes the sum of integral values, the other
+function computes the sum of double values (not necessarily two values).
+</p><p>
+Illustrate your functions in <code>main</code>: if none of its command-line arguments
+contain a dot, then call the function summing integral values, otherwise call
+the function summing double values.
+</p><p>
+Note: both <code>sum</code> functions should be passed at least <code>argv</code>. Don't first
+convert the <code>argv</code> NTBSs to either <code>ints</code> or <code>doubles</code>. 
+</p><p>
+<br><br>
+    
+</p><hr>
+        <strong>Exercise 18.</strong>
+        <br>
+        Basic exercise
+        <br>
+        Purpose of this exercise: learn to return multiple values from a function
+<p>
+In this exercise we're designing a <code>combine</code> function defining two
+parameters: the number of command-line arguments, and the array of command
+line arguments.
+</p><p>
+The function returns, in a <code>struct ReturnValues</code> (declared in
+<code>main.ih</code>):
+    </p><ul>
+    <li> a <code>bool ok</code>, which is <code>true</code> if the requested argument number
+exists and <code>false</code> otherwise;
+    </li><li> a <code>size_t nr</code>, holding the number of the requested argument;
+    </li><li> a <code>string value</code>, containing the requested argument if the
+requested argument exists and an empty string otherwise.
+    </li></ul>
+<p>
+The program calls the functions <code>structCall</code> and <code>boundCall</code>. The program
+can be called without arguments and with arguments. If called without
+arguments then there's no argument, which is considered an error. Otherwise,
+the first argument must specify the number of the argument that is
+requested. E.g., if the program is called as <code>a.out 3 hello world</code> the
+requested argument is <code>hello</code>. If called as <code>a.out 2 hello world</code> the
+requested argument is <code>2</code>.
+</p><p>
+The function <code>bool structCall</code> receives main's <code>argc</code> and <code>argv</code>,
+storing <code>combine's</code> return value in a locally defined <code>struct
+ReturnValues</code>. It should display a short usage message and return
+<code>false</code> if the requested argument does not exist. If the requested argument
+<em>does</em> exists display its argument number and value. In <code>main</code> this
+function is called first, ending the program (normally) if the function
+returns <code>false</code>.
+</p><p>
+Also define a function <code>void boundCall</code> which also receives main's <code>argc</code>
+and <code>argv</code>, and also calls <code>combine</code>, but itself does <em>not</em> define a
+<code>struct ReturnValues</code>. This function also displays the requested argument
+number and value. In <code>main</code> it is called after calling <code>structCall</code>.
+</p><p>
+Hint: be careful not to duplicate code, but factorize identical code in 
+additional functions.
+</p><p>
+You may assume that, <em>if</em> an intial argument is provided, it is an unsigned
+integral value.
+</p><p>
+Implement the program and functions you defined for this exercise.
+</p><p>
+<br><br>
+    
+</p><hr>
+        <strong>Exercise 19.</strong>
+        <br>
+        Basic exercise
+        <br>
+        Purpose of this exercise: learn to design and implement a program, using
+functions. 
+<p>
+The program <code>wc</code> (word count) is a well known unix program. Here we'll
+develop our own <code>wc</code> program. <code>Wc</code> expects one argument: it's either
+    </p><ul>
+    <li> <code>-c</code> if you want to determine the number of characters in the input
+        stream; 
+    </li><li> <code>-w</code> if you want  to determine the number of words (i.e., white-space
+        delimited groups of characters) characters in the input stream; 
+    </li><li> <code>-l</code> if you want  to determine the number of lines in the input stream.
+    </li></ul>
+<p>
+Input is read from the standard input stream, and the result is written to the
+standard output stream. All defined functions should be declared in
+<code>main.ih</code>, which is the program's <em>internal header file</em> (cf. Annotations
+near the end of section 7.11). In short:
+    </p><ul>
+    <li> No include guards are required;
+    </li><li> All functions called by <code>main</code> (either directly or indirectly) 
+        are declared in the internal header file;
+    </li><li> All source files include this internal header.
+    </li></ul>
+<p>
+<br><br>
+    
+</p><hr>
+        <strong>Exercise 20.</strong>
+        <br>
+        Basic exercise
+        <br>
+        Purpose of this exercise: learn to implement a recursive function.
+<p>
+Implement the <code>quicksort</code> sorting function to sort <code>string</code> objects stored
+in an array. The strings are to be sorted case insensitively in alphabetically
+increasing order (using the character ordering as defined in the standard
+ASCII character set).
+</p><p>
+Illustrate the use of your quicksort function in a program sorting the
+environment variables.
+</p><p>
+Hints: 
+    </p><ul>
+    <li> implement the <code>partition</code> function so that its <em>pivot</em> element is
+the leftmost element (indexed by <code>left</code>). Since the leftmost element is now
+the pivot element, the leftmost element to consider is now beyond the pivot
+element. In a loop, continuing until <code>left</code> and <code>right</code> are equal elements
+are now compared to the pivot element. Alle elements to appear after the pivot
+element are swapped with <code>array[right]</code>, reducing <code>right</code> after the swap:
+those elements no longer have to be inspected since we know that they'll
+appear after the pivot element. Likewise, <code>array[left]</code> elements to appear
+before the pivot element can be swapped with the pivot element. In the latter
+case, as well as in the case that left-elements are equal to the pivot element
+<code>pivot</code> receives the <code>left</code> index value, incrementing <code>left</code> thereafter.
+The <code>partition</code> function returns the <code>pivot's</code> value.
+    </li><li> use <strong>tolower</strong>(3) to compare characters case insentively
+    </li></ul>
+<p>
+<br><br>
+    
+</p><hr>
+        <strong>Exercise 21.</strong>
+        <br>
+        Basic exercise
+        <br>
+        Purpose of this exercise: learn to distinguish various return and parameter
+types.
+<p>
+With each question submit a <em>small!</em> example illustrating a characteristic
+situation where the question's topic is encountered. Also <em>briefly (!!)</em>
+describe why your example is an appropriate illustration of the posed
+question. Remember to repeat the questions in your submitted answers.
+</p><p>
+The answer to each sub question should start with this phrase (cf. the first
+question, below):
+    </p><blockquote>
+    It is appropriate to use an int-type parameter when ... (your description
+here). In the code example this is illustrated because ... (your explanation
+here) 
+    <pre>
+            --- your code example here ---
+    
+</pre>
+
+    </blockquote>
+<p>
+In the questions <code>int</code> and <code>std::string</code> are used to illustrate,
+respectively, plain value types, and class-type objects. Don't focus too much
+on these specific types. Any built-in or <code>enum</code>-type instead of <code>int</code>
+could have been used, and any class or struct type instead of <code>std::string</code>
+could have been used.
+</p><p>
+Caveat: for some questions there are <em>no</em> characteristic situations. In
+those cases, indicate why not and what preferred alternative is available.
+</p><p>
+In what situation is it appropriate to:
+</p><ol>
+    <li> define an int-type parameter?
+    </li><li> define a std::string value parameter?
+    </li><li> define a const reference to an int-type parameter?
+    </li><li> define a const reference to a std::string value parameter?
+    </li><li> define a non-const reference to an int-type parameter?
+    </li><li> define a non-const reference to a std::string value parameter?
+    </li><li> define a const rvalue-reference to an int-type  parameter?
+    </li><li> define a const rvalue-reference to a std::string parameter?
+    </li><li> define an rvalue-reference to an int-type  parameter?
+    </li><li> define an rvalue-reference to a std::string parameter?
+    </li><li> return an int-type value?
+    </li><li> return a std::string value?
+    </li><li> return a const reference to an int?
+    </li><li> return a const reference to a std::string?
+    </li><li> return a non-const reference to an int?
+    </li><li> return a non-const reference to a std::string?
+    </li><li> return a const rvalue-reference to an int?
+    </li><li> return a const rvalue-reference to a std::string?
+    </li><li> return an rvalue-reference to an int?
+    </li><li> return an rvalue-reference to a std::string?
+    </li></ol>
+<p>
+<br><br>
+    
+</p><p>
+</p><hr>
+        <strong>Exercise 22.</strong>
+        <br>
+        Advanced exercise
+        <br>
+        Purpose of this exercise: Learn to use recursion to find combinations of
+objects. 
+<p>
+Using ! as the familiar factorial operator, it is well known that if you have
+<code>n</code> objects then there are <code>n! / (k! * (n - k)!)</code> ways to select <code>k</code>
+objects, assuming the ordering of the <code>k</code> objects is irrelevant. 
+</p><p>
+In this exercise we'll address a slightly different question: if we have <code>n</code>
+objects, find all combinations of at least <code>k</code> objects. For example, if <code>n
+= 4</code> and <code>k = 3</code>, and the objects are numbered 0 through 3, then we can
+distinguish five groups:
+        </p><pre>
+    0 1 2 3 
+    0 1 2 
+    0 1 3 
+    0 2 3 
+    1 2 3 
+        
+</pre>
+
+<p>
+Design a (doubly) recursive function <code>void combis(int idx, bool bits[])</code>
+generating all available combinations. The array <code>bits</code> has as many elements
+as there are objects, and if an element's value is <code>true</code> then that
+indicates that that object has been selected. If in a particular situation
+it's impossible to select the required number of objects, then the function
+may return without performing any further action; once all bits have been
+visited the selected bits should be shown (see the hints, below). In all other
+cases indexed bits should once be set and once be cleared after which the
+next bit is processed.
+</p><p>
+Use the <code>combis</code> function in <code>main</code>, expecting two arguments: its 1st
+argument specifies the total number of objects, its 2nd argument the minimal
+number of selected objects. You may assume that the program's arguments are
+positive integral values, and that the first argument's value is at least
+equal to the second argument's value.
+</p><p>
+Hints:
+    </p><ul>
+    <li> To simplify the function's parameterlist, use the global variables 
+<code>nTotal</code> to represent the total number of objects and <code>nRequired</code> to
+represent the minimal number of selected objects. Define these global
+variables in a separate source file <code>data.cc</code>.
+    </li><li> Define a support function <code>show</code> receiving the <code>bits</code> array (be
+careful when specifying its parameter!) and showing the indices of all of the
+bits that were set.
+    </li></ul>
+<p>
+<br><br>
+    
+</p><hr>
+        <strong>Exercise 23.</strong>
+        <br>
+        Advanced exercise
+        <br>
+        Purpose of this exercise: learn to build / start building your own library.
+<p>
+Note: this exercise aims at familiarizing you to the world of library
+    construction. Although all's still basic there are lots of things to 
+    become aware of. See the hints at the end.
+</p><p>
+Functions to compute the square root of floating point numbers are declared 
+in the <code>cmath</code> header file. But sometimes you know that you have an integral
+data type (e.g., <code>int, size_t, unsigned long long</code>) and you're simply not
+interested in converting those values first to some floating point type and
+then back to the original integral type. Also, <code>cmath</code> defines functions
+like <code>sqrtf</code> and <code>sqrtl</code>: required in <strong>C</strong>, but for <strong>C++</strong> the compiler
+knows the argument type and should be able to use the appropriate function.
+</p><p>
+Create a library <code>libcppmath.a</code> containing the following functions:
+    </p><ul>
+    <li> <code>int sqrt(int arg)</code>: checks whether <code>arg
+        &gt;= 0</code>. Use the <code>unsigned long long</code> returning <code>sqrt</code> function
+        (below) to obtain the square root;
+    </li><li> <code>size_t sqrt(size_t arg)</code> use the next function to obtain the square
+        root; 
+    </li><li> <code>unsigned long long sqrt(unsigned long long arg)</code> see below for the
+        algorithm; 
+    </li><li> <code>double sin(size_t degrees)</code> returns the sine of <code>degrees</code> (% 360).
+        Since the standard <code>sin</code> function uses radians, and 2 * pi radians
+        equals 360 degrees, compute the radians from <code>degrees</code> using
+        <code>radians = pi / 180 * degrees</code>. Use the <code>M_PI</code> value defined in
+        <code>cmath</code> for pi. <br>
+        Caveat: explicitly specify integral constants as
+        unsigned long, or they are interpreted as <code>int</code> and the standard
+        <code>sin</code> function will be called;
+    </li><li> <code>double cos(sin_t degrees)</code>: same as <code>sin</code>, now to return the
+        cosine;
+    </li><li> <code>double tan(sin_t degrees)</code>: same as <code>sin</code>, now to return the
+        tangent;
+    </li><li> <code>double sin(size_t degrees, size_t minutes, size_t seconds)</code> returns
+        the sine of <code>degrees:minutes:seconds</code>. By default <code>seconds</code> should
+        be 0.<br>
+        Caveat: minutes and seconds exceeding 60 should properly be handled;
+    </li><li> <code>double cos(sin_t degrees, size_t minutes, size_t seconds)</code>: same as
+        <code>sin</code>, now to return the cosine;
+    </li><li> <code>double tan(sin_t degrees, size_t minutes, size_t seconds)</code>: same as
+        <code>sin</code>, now to return the tangent;
+    </li></ul>
+<p>
+Here's an algorithm to compute the square root of an integral value:
+</p><p>
+</p><h3>The sqrt algorithm</h3>
+<p>
+The algorithm is best implemented using recursion (not using 
+head- or tail-recursion).
+</p><p>
+In essence it's based on the well-known formula
+</p><p>
+</p><div style="text-align: center">(a + b)<sup>2</sup> = a<sup>2</sup> + 2ab + b<sup>2</sup></div>
+<p>
+Here's how it works:
+</p><p>
+Consider a number pqrst, where each letter represents two (not necessarily
+identical) digits (e.g., p = 12, q = 23, r = 56, s = 00, t = 05; by definition
+p's digits are not both 0).
+</p><p>
+For each pair of digits the sqrt consists of just one digit. E.g., square
+roots of values up to 99 consist of one digit; and 100 through 9999 require
+two digits (remember: if `a = sqrt(x)', then a<sup>2</sup> &lt;= x). Consequently,
+`pqrst' has a 5-digit sqrt `abcde'.
+</p><p>
+(1) Consider `p'. Sqrt(p) can easily be found using a simple lookup
+procedure (e.g., 1..3: 1, 4..8: 2, 9..15: 3, etc.).  You could implement that
+using a <code>switch</code> or by defining an array. This allows you to find the most
+significant digit `a' of sqrt(pqrst): find `a' such that a<sup>2</sup> &lt;= p.
+</p><p>
+(2) Consider the next pair of digits (so we're looking at `pq'). To
+obtain its nearest sqrt we're looking for a digit `b' such that
+</p><p>
+</p><div style="text-align: center">pq &lt;= (10a + b)<sup>2</sup></div>
+<p>
+Remember: sqrt(pq) = ab, with a and b single digits, so `a' becomes `10a'
+in the above formula). Thus, for `ab' digit `a' must be multiplied by
+10 (as it is positioned left of `b') and so we must select `b' so that 
+</p><p>
+</p><div style="text-align: center">pq &lt;= (10a + b)<sup>2</sup></div>
+<p>
+(3) So, as (10a + b)<sup>2</sup> = 100a<sup>2</sup> + 2*10*a*b + b<sup>2</sup>, we can
+now <em>estimate</em> `b' as
+</p><p>
+</p><div style="text-align: center">b<sub>est</sub> = (pq - 100a<sup>2</sup>) / 20a</div>
+<p>
+(4) If we would do it just like that, we can easily overestimate b, since
+we do not take into account b<sup>2</sup>. Using the requirement at (2) we can
+correct overestimates of b by reducing b in 10a + b<sub>est</sub> until condition
+(2) is satisfied. Here is an example, computing sqrt(255):
+        </p><pre>
+    255 -&gt; 2 | 55   -&gt; a = 1                                (1)
+
+    b.est = (255 - 100) / 20 = 7                            (3)
+
+    sqr(10a + b.est)
+    sqr(10  + 7) = 298  -&gt; exceeds 255, so reduce b.est     (4)
+    sqr(10  + 6) = 256  -&gt; exceeds 255, so reduce b.est
+    sqr(10  + 5) = 225  -&gt; does not exceed 255, 
+
+    so sqrt(255) = 15.
+        
+</pre>
+
+<p>
+(5) The recursion becomes apparent when you replace `p' by `pq', `q' by
+`r', `a' by `ab', and `b' by `c', and continue at (2). Once you get again to
+(5), `p' is replaced by `pqr', `q' by `s', etc. until finally `p' is replaced
+by `pqrs' and `q' by `t', etc. At that point all pairs of digits were
+processed, and their closest integral square root has been determined. Here is
+an illustration  computing sqrt(1223560005) as sqrt(12 23 56 00 05) as 
+sqrt(pqrst). The value is recursively broken down in final pairs of digits
+until the most significant pair is obtained. The simulation starts at the
+deepest recursive level, so at the value 12:
+        </p><pre>
+    step 1:
+        p = 12 -&gt;   root = sqrt(12) = 3, rest = 12 - 9 = 3
+
+    step 2:
+        prefix previous rest to p = 23: 323.
+        use the previosly obtained root (3) as a.
+
+        p = 323 -&gt; estimate b from 323 = 2 * 10 * 3 * b -&gt;
+                    b = 5.
+                   Reduce b as 20 * 3 * 5 + 5 * 5 exceeds 323 -&gt; b = 4
+            -&gt; root = previous root * 10 + 4 = 34
+               rest = 67
+
+    step 3:
+        prefix previous rest to p = 56: 6756.
+        use the previosly obtained root (34) as a.
+
+        p = 6756 -&gt; estimate b from 6756 = 2 * 10 * 34 * b -&gt;
+                    b = 9.
+            -&gt; root = previous root * 10 + 9 = 349
+               rest = 555
+
+    step 4:
+        prefix previous rest to p = 00: 55500
+        use the previosly obtained root 349 as a.
+
+        p = 55500 -&gt; estimate b from 55500 = 2 * 10 * 349 * b -&gt;
+                    b = 7
+            -&gt; root = previous root * 10 + 7 = 3497
+               rest = 6591
+
+    step 5
+        prefix previous rest to p = 05: 659105
+        use the previosly obtained root 3497 as a.
+
+        p = 659105 -&gt; estimate b from 659105 = 2 * 10 * 3497 * b -&gt;
+                    b = 9
+            -&gt; root = previous root * 10 + 9 = 34979
+               rest = irrelevant since we're leaving the recursion
+
+
+    And so: sqrt(1223560005) equals 34979.
+        
+</pre>
+
+<p>
+</p><h3>The assignment</h3>
+<p>
+Submit the implementations of all the functions in the library, and submit the
+header file <code>cppmath.h</code>, and submit the command you used to create
+<code>libcppmath.a</code>. 
+</p><p>
+Submit a main function calling <code>sqrt(int), sqrt(unsigned long long)</code> and
+<code>sin(degrees)</code>, including the command you used to create the binary program.
+</p><p>
+Create a (separate) file <code>cppmath.cc</code> containing all the sources of the
+functions that are also present in the library. Compile  <code>cppmath.cc</code> and
+link it to the <code>main</code> function. Compare the sizes of the executable linked
+to the library and the executable linked to <code>cppmath.o</code>. Explain the size
+difference between the two executables.
+</p><p>
+</p><h3>Hints and Tips</h3>
+<p>
+</p><ul>
+    <li> Create the library in a directory separate from your program's
+        library.
+    </li><li> The library provides a header file (<code>cppmath.h</code>) which is <em>not</em>
+        the header file that is used when maintaining the library. For that
+        use an internal header. The <code>cppmath.h</code> header is included by
+        programs that use facilities from the library
+    </li><li> The <code>cppmath.h</code> must be as minimal as possible. However, since its
+        directly connected to the <code>cmath</code> context, it may include that
+        header. Other than that it should declare the facilities offered by
+        the library.
+    </li><li> The square root algorithm on integers benefits from a <em>plain old
+        data</em> (POD) struct containing the <code>unsigned long long</code> fields
+        <code>root</code> (the computed square root) and <code>remainder</code> (the leftover
+        part)
+    </li><li> Two library support functions help <code>sqrt(unsigned long long) to do
+        its work: 
+        tt(POD psSqrt(unsigned long long lhs, unsigned long long rhs)) where
+        ttlhs</code> is the value to compute the square root of divided by 100, and
+        <code>rhs</code> is that value modulo 100. The function 
+        <code>unsigned lookupSqrt(unsigned)</code> receives a value
+        between 0 and 100 (inclusive) and returns the largest integer whose
+        square does not exceed that value. Define a lookup array of squares
+        when implementing this function.
+    </li></ul>
+<p>
+<br><br>
+    
+</p><hr>
+        <strong>Exercise 24.</strong>
+        <br>
+        Advanced exercise
+        <br>
+            Purpose of this exercise: learn to profile.
+<p>
+In the slides an example is given of a profiling session. Construct the
+program presented there, define it using the one-function-one-source rule, and
+submit the source files as well as the profiling results you obtained.
+</p><p>
+In the example the <code>-O2</code> optimization flag was used. What does it do?
+Briefy answer what <code>-O1</code> and <code>-O3</code> do? What are the differences in the
+profiling results if these optimization flags are used (or if no optimization
+was used at all?). Also look at the implications of the results for the way
+the functions were defined, in particular what you can learn from it when
+defining your own function parameters.
+</p><p>
+Here is the profiling source mentioned in the slides, shown as one single
+source file. Correctly splitting the source in separate source files, which
+can then be compiled and linked to a running prorgram is part of the exercise.
+        </p><pre>#include &lt;string&gt;
+#include &lt;iostream&gt;
+
+using namespace std;
+
+void fun(string s)
+{
+    size_t sum = 0;
+    for (size_t idx = 0; idx &lt; s.length(); ++idx)
+        sum += s[idx];
+}
+
+void fun2(string const &amp;s)
+{
+    size_t sum = 0;
+    for (size_t idx = 0; idx &lt; s.length(); ++idx)
+        sum += s[idx];
+}
+
+void callValue(string const &amp;prog)
+{
+    for (size_t idx = 0; idx &lt; 10000000; ++idx)
+        fun(prog);
+}
+
+void callRef(string const &amp;prog)
+{
+    for (size_t idx = 0; idx &lt; 10000000; ++idx)
+        fun2(prog);
+}
+
+int main(int argc, char *argv[])
+{
+    callValue(argv[0]);
+    callRef(argv[0]);
+}
+</pre>
+
+<p>
+<br><br>
+    
+</p><p>
+</p><hr>
+<ul>
+    <li> <a href="https://www.icce.rug.nl/edu/1/opgaven.html">Table of Contents</a>
+    </li><li> <a href="https://www.icce.rug.nl/edu/1/opgaven02.html">Previous Chapter</a>
+</li></ul>
+<hr>
+
+
+</body></html>

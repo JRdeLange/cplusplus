@@ -1,0 +1,24 @@
+## Exercise 5
+
+- '>' is called redirection
+
+- '|' is called piping
+
+The main difference between the two is that the piping operator places stan-
+dard output of a program into the standard input of another program.  Take for
+an example the ’wc’ (word count) tool of linux.
+The redirection operator places files into the standard input of a program, or
+places standard output of a program into a file.
+So, one is for program interaction, the other is for file interaction.
+
+
+$ program < in > out
+
+This example inputs a file called ’in’ into the program and puts the output of
+the program into a file called ’out’.
+
+
+$ program | less
+
+This example puts the output of the program in the command less.  With the
+less command you can read the output of the program page by page.
