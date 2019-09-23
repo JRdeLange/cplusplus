@@ -1,24 +1,25 @@
 #include "main.h"
 
-int partition(int a[],int lower,int upper) {
+// TODO: Adjust this for strings, instead of ints
+int partition(int arr[],int lower,int upper) {
   int pivot,i,j,temp;
-  pivot=a[lower];
+  pivot=arr[lower];
   i=lower;
   j=upper+1;
-  do {
+  while(i < j) {
 
-    while(a[i] < pivot && i <= upper)
+    while(arr[i] < pivot && i <= upper)
       i++;
-    while(pivot < a[j]);
+    while(pivot < arr[j]);
       j--;
     if(i < j) { // Switch higher values with lower values
-      temp=a[i];
-      a[i]=a[j];
-      a[j]=temp;
+      temp=arr[i];
+      arr[i]=arr[j];
+      arr[j]=temp;
     }
-  } while(i < j);
+  }
 
-  a[lower]=a[j];
-  a[j]=pivot;
+  arr[lower] = arr[j];
+  arr[j] = pivot;
   return(j);
 }
