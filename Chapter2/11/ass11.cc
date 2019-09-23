@@ -33,6 +33,5 @@ int main(int argc, char *argv[])
 			getline(cin,line);
 		}
 
-	cout << numOfLines 						  // We print the number of lines.
-		<< "\n";
+	cout << numOfLines << '\n';				  // We print the number of lines.
 }
