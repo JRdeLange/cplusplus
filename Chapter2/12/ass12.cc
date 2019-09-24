@@ -21,9 +21,9 @@ int main()
 			size_t lastWordLength;		// The length of the last word is calculated
 			lastWordLength = currLine.length() - lastSpace;
 										// Replace the first word by the last
-			currLine.replace(0, firstSpace, currLine, lastSpace+1, lastWordLength);
+			currLine.replace(0, firstSpace, currLine, lastSpace + 1, lastWordLength);
 		}
 
-	cout << currLine << "\n";			// Output the line
+		cout << currLine << "\n";		// Output the line
 	}
 }

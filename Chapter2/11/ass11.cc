@@ -4,43 +4,35 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-	string ok{'o','k'};						// We make the ok string so that we can 
-	bool useCorrect = false;				// use the .compare() function. We use 
-											// useCorrect to save which method to use
+	bool useCorrect = false;				  // We use this variabe to save 
+											  // which method to use.
 
-	for (int iter = 0; iter < argc; ++iter) // We itterate through all arguments 
-	{										// provided on the command line. 
-		if(!ok.compare(argv[iter]))			// If we find the flag ok we tell the 
-			useCorrect = true;				// program that we should use the correct 
-	}										// method.
+	if (argc > 1 and string(argv[1]) == "ok") // We check for the flag "ok" on
+	{										  // The command line. If the flag
+		useCorrect = true;					  // is present we tell the program
+	}										  // to use the correct method.
 
-	size_t numOfLines = 0;					// We use numOfLines to keep track of the 
-											// number of lines.
-	string line;							// We need line so that we can use getline().
+	size_t numOfLines = 0;					  // We use numOfLines to keep  
+											  // track of the number of lines.
+	string line;							  // We need line so that we can 
+											  // use getline().
 
-	if (useCorrect)							// We check the result of the command line 
-		while(1)							// scan here. 
-		{									 
-			getline(cin,line);				// The correct method first removes a line,
-			++numOfLines;					// then adds 1 to the number of lines and 
-			if (cin.eof())					// then checks for the end of the file.
-				break;
-		}
+	if (useCorrect)							  // We check the result of the  
+		while (true)						  // command line scan here. 
+		{			
+			if (cin.eof())					  // The correct method first  
+				break;						  // checks whether the end of the 
+			getline(cin,line);				  // file has been reached, it then 
+			++numOfLines;					  // removes a line and adds 1 to  
+		}									  // the number of lines
 	else
-		while(1)							// The incorrect method first adds one to the 
-		{									// number of lines, then checks for the end  
-			++numOfLines;					// of the file and then removes the line.
-			if (cin.eof())
-				break;
+		while (true)						  // The incorrect method first 
+		{									  // adds one to the number of   
+			++numOfLines;					  // lines, then checks for the end 
+			if (cin.eof())					  // of the file and then removes 
+				break;						  // the line.
 			getline(cin,line);
 		}
 
-	if (numOfLines == 1)					// If there is only one line we use singular for
-		cout << "\nThere is " 				// the output
-			<< numOfLines 
-			<< " line in this file \n";
-	else									//Else we use plural
-		cout << "\nThere are " 
-			<< numOfLines 
-			<< " lines in this file \n";
+	cout << numOfLines << '\n';				  // We print the number of lines.
 }
