@@ -21,7 +21,9 @@ int main(int argc, char *argv[], char **envp) {
     currentEnv[i] = envp[i];
   }
 
-  quicksort(currentEnv, 0, currentEnv.length()-1);
+  quicksort(currentEnv, 0, envSize);
+
+  for 
 
   delete [] currentEnv;
   return 0;
