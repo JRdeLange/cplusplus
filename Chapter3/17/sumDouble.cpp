@@ -1,11 +1,13 @@
-#include <stdlib>
+#include <iostream>
+#include <string>
 
 using namespace std;
 
-double sum (char **argument_vector, int argCount, int found) {
-  double sum = 0.0f;
-  for(int i = 1; i < argCount; i++) {
-    sum += strtoD(argument_vector[i]);
-  }
-  return sum;
+void sum (char **argument_vector, int argCount, bool dotFound) 
+{
+    double sum = 0;                         // This will contain the sum
+    for (int i = 1; i < argCount; i++)      // Go through all arguments
+        sum += stod(argument_vector[i]);    // and sum them
+
+    cout << sum << '\n';                    // Print the sum of all args
 }
