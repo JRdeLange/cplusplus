@@ -1,5 +1,5 @@
-void function(int const &int)
+void function(int const &value)
 {
-	if (int > 4)
-		cout << "at least five"
+	if (value > 4)
+		return;
 }
