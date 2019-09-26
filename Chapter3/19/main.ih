@@ -1,0 +1,18 @@
+// Contains the options corresponding to the flags
+enum Options {
+  CountCharacters,
+  CountWords,
+  CountLines,
+  Invalid,
+};
+
+// Parse the input the the options enum
+Options resolveOptions(std::string input);	
+
+// Show usage info to the user
+void printUsage();
+
+// Counts and returns the number of the thing the name suggests
+size_t determineCharacterCount();
+size_t determineWordCount();
+size_t determineLineCount();

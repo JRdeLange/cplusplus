@@ -1,11 +1,14 @@
 #include <iostream>
+#include <string>
 
-#include "main.h"
+using namespace std;
 
-size_t determineWordCount() {
-  std::string word;
-  size_t count = 0;
-  while(std::cin >> word)
-    count++;
-  return count;
+size_t determineWordCount() 
+{
+  string word;
+  size_t count = 0;					// Keeps track of the nr of words
+  while(cin >> word)				// While there are words
+    count++;						// add one per word
+
+  return count;						// Retun the total
 }

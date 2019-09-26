@@ -1,11 +1,14 @@
 #include <iostream>
+#include <string>
 
-#include "main.h"
+using namespace std;
 
-size_t determineLineCount() {
-  std::string line;
-  size_t count = 0;
-  while( getline(std::cin, line) )
-    ++count;
-  return count;
+size_t determineLineCount() 
+{
+  string line;
+  size_t count = 0;					// Keeps track of number of lines
+  while (getline(cin, line))		// While there are lines, for each
+    ++count;						// add one to the current total
+	
+  return count;						// And return it
 }
