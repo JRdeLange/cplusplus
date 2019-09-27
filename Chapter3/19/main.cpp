@@ -1,29 +1,33 @@
 #include <iostream>
+#include "main.ih"
 
-#include "main.h"
+using namespace std;
 
-int main(int argc, char *argv[]) {
-  if (argc <= 1) {
-    printUsage();
+int main(int argc, char *argv[]) 
+{
+  if (argc <= 1)      // Invalid arguments given
+  {            
+    printUsage();     // so show usage
     return 0;
   }
 
-  switch (resolveOptions(argv[1])) {
+  switch (resolveOptions(argv[1])) 
+  {
   case CountCharacters:
-    // Determine the number of characters in the input stream
-    std::cout << determineCharacterCount() << "\n";
+                      // Count the characters in the input
+    cout << determineCharacterCount() << "\n";
     break;
   case CountWords:
-    // Determine the number of words (delimited by space characters)
-    std::cout << determineWordCount() << "\n";
+                      // Count the words in the input
+                      // (delimited by space characters)
+    cout << determineWordCount() << "\n";
     break;
   case CountLines:
-    // Determine the number of lines
-    std::cout << determineLineCount() << "\n";
+                      // Count the lines in the input
+    cout << determineLineCount() << "\n";
     break;
-  default:
-    printUsage();
-    break;
+  default:            // Invalid arguments given
+    printUsage();     // so show usage
   }
 
   return 0;

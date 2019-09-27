@@ -1,17 +1,22 @@
 #include <iostream>
 #include <string>
+#include "main.h"
 
 using namespace std;
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[]) 
+{
 
-  for (int i = 1; i < argc; i++) { // 'i' is set to 1 in order to skip the program name
-    if (argv[i].Find(".") != std::string::npos) { // Check to see if there is a dot
-      sum(argv, argc, 1); // Sum with double values
-      return 0;
+    for (int idx = 1; idx < argc; idx++)        // Go trough all arguments except
+    {                                           // the program call
+        string entry = argv[idx];               // Convert to string to use find()
+                                                // Check for dots
+        bool dotFound = (entry.find(".") != string::npos);
+        if (dotFound)                           // If there is a dot
+        { 
+            sum(argv, argc, dotFound);          // Sum with double values
+            return 0;                           // Quit the program
+        }
     }
-  }
-
-  sum(argv, argc) // Sum with integral values
-  return 0;
+    sum(argv, argc);                            // No doubles, so sum ints
 }
