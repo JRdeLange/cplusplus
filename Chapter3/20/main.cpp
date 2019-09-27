@@ -1,30 +1,24 @@
 #include <cstdlib>
 #include <iostream>
+#include <unistd.h>
+
+#include <string>
+#include <vector>
 
 #include "main.h"
 
-size_t envLength(char **env) {
-  size_t count = 0;
-  while(1) {
-    if (*env++ == 0)
-      break;
-    count++;
-  }
-  return count;
-}
 
-int main(int argc, char *argv[], char **envp) {
-  // TODO: Oof, this code is ugly
-  size_t envSize = envLength(envp);
-  std::string *currentEnv = new std::string[envSize];
-  for(size_t i = 0; i < envSize; i++) {
-    currentEnv[i] = envp[i];
+int main() {
+
+  std::vector<std::string> arr;
+  
+  for(size_t idx = 0; idx < sizeof(environ)/sizeof(char**); idx++) {
+    arr.push_back(environ[idx]);
   }
 
-  quicksort(currentEnv, 0, envSize);
+  convertToASCII(arr.front());
 
-  for 
+  // quicksort(arr, 0, sizeof(environ)/sizeof(char**));
 
-  delete [] currentEnv;
   return 0;
 }

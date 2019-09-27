@@ -1,9 +1,9 @@
-#include "main.h"
+#include "main.ih"
 
 ReturnValues combine(size_t requested, int argCount, char **argVector) {
   ReturnValues ret; // Define a struct to eventually return
   ret.nr = requested;
-  ret.ok = (requested < (size_t)argCount); // Is true if the requested argument exists
+  ret.ok = (requested < (size_t)argCount); // True if the argument exists
   if(!ret.ok) {
     // Error, no requested element
     ret.value = ""; // Return an empty string

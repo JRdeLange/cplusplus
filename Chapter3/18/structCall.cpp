@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "main.h"
+#include "main.ih"
 
 using namespace std;
 
@@ -11,7 +11,8 @@ bool structCall(int argCount, char **argVector) {
   }
 
   // Call combine function to retrieve requested argument
-  ReturnValues ret = combine(getRequestedNumber(argCount, argVector[1]), argCount, argVector);
+  ReturnValues ret;
+  ret = combine(getRequestedNumber(argVector[1]), argCount, argVector);
   if (ret.ok) {
     cout << ret.nr << " " << ret.value << "\n"; // Print requested arguments
   } else { // Print usage if requested argument does not exist

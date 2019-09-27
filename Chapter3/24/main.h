@@ -1,9 +1,9 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-using namespace std;
+#include <string>
 
-void callRef(string const &prog);
-void callValue(string const &prog);
+void callRef(std::string const &prog);
+void callValue(std::string const &prog);
 
 #endif
